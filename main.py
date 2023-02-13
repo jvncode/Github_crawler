@@ -83,12 +83,21 @@ class Crawler:
 
             # Returns results in JSON format
             return json.dumps(result_global)
-        return {}
+        return json.dumps({})
 
 
-input_data = open('_input.json', 'r')
-s = Crawler(input_data.read())
-input_data.close()
-output_data = open('_output.json', 'w')
-output_data.write(s.parser())
-output_data.close()
+# Reading _input.json file and using the data for the instance
+try: 
+    input_data = open('_input.json', 'r')
+    s = Crawler(input_data.read())
+    input_data.close()
+except Exception as e:
+    print(f"Reading error: {e}")
+
+#  Writing the result of the execution to the file _output.json
+try:
+    output_data = open('_output.json', 'w')
+    output_data.write(s.parser())
+    output_data.close()
+except Exception as e:
+    print(f"Typing error: {e}")
